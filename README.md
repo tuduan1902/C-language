@@ -99,13 +99,13 @@
    - int *ptr = (int*)malloc(1000)
 - [3. NULL Pointer](#) : 
    - In C++ 11, I have keyword "nullptr", it is null pointer when u want start up
-   ```cpp
-   // Syntax in C++
-   int *ptr = nullptr;
+      ```cpp
+      // Syntax in C++
+      int *ptr = nullptr;
 
-   // Syntax in C
-   int *ptr = NULL;
-   ```
+      // Syntax in C
+      int *ptr = NULL;
+      ```
 - [4. Pointers and Arrays](#) : 
    - An array name can be thought of as a constant pointer.
    - Address of an array name is address of first element.
@@ -116,4 +116,103 @@
       printf("%d \n", &array[0]);
       // The same result
       ```
+- [5. Dynamic memory allocation](#) :
+   - [5.1. Cấp phát bộ nhớ](#) : 
+      - Cấp phát bộ nhớ tĩnh (biến toàn cục và biến cục bộ) và cấp phát bộ nhớ tự động(tham số truyền vào hàm và các biến trong hàm)
+      - Bộ nhớ khi sử dụng được lưu vào STACK tối đa 1MB
+   - [5.2. Cấp phát động](#) : 
+      - Yêu cầu bộ nhớ từ hệ điều hành khi cần thiết gọi là HEAP lên tới GB 
+         ```cpp
+         // Cấp phát động một số nguyên và gán địa chỉ cho con trỏ ptr nắm giữ
+         // dynamic memory allocation int and assign address for pointer holds
+         int  *ptr = new int(value);
+
+         // When u don't use it anymore, u should delete pointer and return memory for operating system.
+         delete ptr;
+         // or
+         ptr = NULL;
+         ```
+
+      - Con trỏ lơ lửng là con trỏ trỏ vào vùng nhớ đã được giải phóng.
+      - Con trỏ lúc này trỏ tới một vùng nhớ nằm ngoài khả năng quản lý, vì khi giải phóng ô nhớ thì hệ điều hành đã tiếp quản và sử dụng.
+      - Example : 
+         I use syntax of C++ for this example.
+         ```cpp
+         int *ptr = new int;
+         *ptr = 10;  //assgin 10 for memory of ptr
+
+         // giải phóng vùng nhớ cho hệ điều hành, ptr đang là con trỏ lơ lửng
+         delete ptr;
+
+         // truy cập vùng nhớ ptr đang trỏ tới => lỗi undefined behavior
+         printf("%d /n", *ptr);
+
+         // giải phóng vùng nhớ con trỏ đã được giải phóng trước đó => lỗi underfined behavior
+         delete ptr
+         ```
+         ```cpp
+         int *ptr = new int; // cấp phát động một số nguyên
+         int *otherPtr = ptr; // otherPtr và ptr đang cùng trỏ đến một vùng nhớ
+
+         // giải phóng vùng nhớ cho hệ điều hành, ptr và otherPtr đang là con trỏ lơ lửng
+         delete ptr;
+         ptr = nullptr; // ptr đang là con trỏ null
+
+         // Tuy nhiên, otherPtr vẫn là con trỏ lơ lửng và chương trình không báo lỗi underfined behavior
+         ```
+   - [5.3. Cấp phát mảng động](#) : 
+      - Syntax
+         ```cpp
+         int length;
+         scanf_s("%d", &length);
+         int *array = malloc(length* sizeof(int)); // kích thước mảng có thể là biến số
+         // sử dụng ...
+         // Xóa mảng động
+         free(array); // return memory of array for operating system
+         ```
+   - [5.4. Pointer and const](#) :
+      - Con trỏ hằng (pointer to const value) : can't change value of memory it stores but can change address
+         - Syntax
+            ```cpp
+            const <datatype> pointer_name;
+            // thị phạm
+            const int value = 10;
+            const int *ptr = &value;
+            ```
+         -  Example: 
+            ```cpp
+            int value = 10;
+            const int *ptr = &value; // ptr là con trỏ hằng
+            value = 20; // ok
+            *ptr = 20; // error because ptr is pointer to const value
+
+            // Nhưng con trỏ hằng có thể trỏ tới địa chỉ ô nhớ khác
+            int value2 = 6;
+            ptr = &value2;
+            ```
+      - Hằng con trỏ (constant pointer) : can't change address of the memory it stores but can change the value of address stores
+         - Syntax:
+            ```cpp
+            <datatype> *const pointer_name;
+            // thị phạm
+            int value = 10;
+            int *const ptr = &value;
+            ```
+         - Example: 
+            ```cpp
+            int value1 = 10;
+            int value2 = 20;
+
+            int *const ptr = &value1;
+            ptr = &value2; // error because ptr is constant value
+            ```
+      - Hằng con trỏ hằng (const pointer to a const value) : can't change address of the memory and value.
+         - Syntax: 
+            ```cpp
+            const <datatype> *const pointer_name;
+            // thị phạm
+            int value = 10;
+            const int *const ptr = &value;
+            ```
+- [6. Reference value](#) : 
    
