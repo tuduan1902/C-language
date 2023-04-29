@@ -214,5 +214,84 @@
             int value = 10;
             const int *const ptr = &value;
             ```
+
+   - [5.5. Void pointer](#) :
+      - Cho biết địa chỉ dữ liệu nhưng không cho biết cách truy xuất dữ liệu.
+      - Có thể trỏ tới các đối tượng của bất kì kiểu dữ liệu nào.
+      - Syntax
+         ```cpp
+         void *ptr; // ptr là con trỏ void
+         ```
+   - [5.6. Pointers to pointers](#) : 
+      ```cpp
+      int value = 10;
+
+      int *ptr = &value;
+      printf("%d \n", *ptr); // in ra giá trị tại địa chỉ mà con trỏ ptr trỏ đến (biến value)
+
+      int **ptr_ptr = &ptr; // con trỏ "ptr_ptr" trỏ đến con trỏ "ptr" trỏ đến biến "value"
+      printf("%d \n", *ptr_ptr) // in giá trị tại địa chỉ ptr_ptr trỏ đến (địa chỉ ptr(&ptr))
+      printf("%d \n", **ptr_ptr) // dereference 2 lần để in ra giá trị tại địa chỉ con trỏ ptr trỏ đến (biến value) 
+      ```
+
+      - Dùng để quản lí mảng một chiều các con trỏ
+         ```cpp
+         int *ptr1 = NULL;
+         int *ptr2 = NULL;
+
+         int **ptr_ptr = new int*[2];
+         ptr_ptr[0] = ptr1;
+         ptr_ptr[1] = ptr2;
+         ```
+      
+
 - [6. Reference value](#) : 
-   
+   - Không được cấp phát bộ nhớ , không có địa chỉ riêng 
+   - Dùng làm bí danh cho một biến (kiểu giá trị) và nó sử dụng vùng nhớ của biến này
+   - Không thể khởi tạo tham chiếu với giá trị hằng (const)
+   - Để sử dụng tham chiếu tới giá trị hằng ta khởi tạo nó với tham chiếu hằng
+      ```cpp
+      const int y = 7;
+      int &value = y; // error
+      const int &value = y; // oke
+      int &ref = 6; // error   
+      const int &ref = 6; // oke
+      ```
+   - Syntax
+      ```cpp
+      // Tham chiếu dưới dạng bí danh
+      int value = 10;
+      int &ref = value; // ref tham chiếu đến biến value
+      // toán tử & trong TH này không phải là toán tử địa chỉ mà là tham chiếu đến
+      ```
+
+      ```cpp
+      void changValue(int &y) // y là biến tham chiếu 
+      {
+         printf("%d \n", y);
+         y = 69;
+         printf("%d \n", y);
+      } // y bị hủy
+
+      int main() {
+         int x = 1;
+         printf("%d \n", x);
+         changeValue(x);
+         printf("%d \n", x);
+
+         return 0;
+      }
+      ```
+- [7. Vector](#) : 
+   - It just have in C++
+   - Syntax:
+      ```cpp
+      vector<datatype> vector_name;
+      // Thị phạm
+      vector<int> array;
+      vector<int> array2 = { 9, 7 , 5, 1};
+      ```
+   - Method: 
+      - size() : trả về số lượng phần tử đang được sử dụng trong vector
+      - resize() : thay đổi độ dài của vector
+      - capacity() : trả về số lượng phần tử được cấp phát cho vector trong bộ nhớ
