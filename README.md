@@ -322,8 +322,7 @@
    - Overload : trùng tên nhưng khác nhau về tham số, đối số truyền vào.
 
 - [11. Default arguments](#) : 
-   - Khi dùng nhiều hoặc 1 đối số mặc định thì đối số mặc định phải đứng cuối.
-   - 
+   - Khi dùng nhiều hoặc 1 đối số mặc định thì đối số mặc định phải đứng cuối.   
    - Example 
       ```cpp
       int sum(int a, int b, int c = 0){
@@ -335,4 +334,23 @@
       }
       ```
 - [12. Functions pointer](#) :
-   
+   - Define: Con trỏ lưu trữ địa chỉ của hàm 
+   - Syntax : 
+      ```cpp
+      int(*fcnPtr)(int); // con trỏ hàm nhận vào 1 biến kiểu int và trả về kiểu int
+
+      void(*fcnPtr)(int, int); // con trỏ hàm nhận vào 2 biến kiểu int và trả về kiểu void
+      ```
+
+      ```cpp
+      int funcA();
+      int funcB();
+      void funcC();
+      double funcD(int a);
+
+      int(*fcnPtr)() = funcA(); // error , không dùng dấu ngoặc đơn () sau tên hàm
+      int(*fcnPtr)() = funcA; // con trỏ fcnPtr trỏ tới hàm funcA
+      fcnPtrA = funcB; // oke vì có cùng cấu trúc 
+
+      double(*fcnPtr4)(int) = funcD; // oke
+      ```
