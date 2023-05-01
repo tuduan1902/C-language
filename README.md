@@ -245,7 +245,7 @@
          ```
       
 
-- [6. Reference value](#) : 
+## 6. Reference value : 
    - Không được cấp phát bộ nhớ , không có địa chỉ riêng 
    - Dùng làm bí danh cho một biến (kiểu giá trị) và nó sử dụng vùng nhớ của biến này
    - Không thể khởi tạo tham chiếu với giá trị hằng (const)
@@ -282,7 +282,7 @@
          return 0;
       }
       ```
-- [7. Vector](#) : 
+## 7. Vector : 
    - It just have in C++
    - Syntax :
       ```cpp
@@ -296,12 +296,12 @@
       - resize() : thay đổi độ dài của vector
       - capacity() : trả về số lượng phần tử được cấp phát cho vector trong bộ nhớ
 
-- [8. Function return value, reference, address](#) : 
+## 8. Function return value, reference, address: 
    - Return value : Use khi trả về các kiểu cơ bản, đối số, tham số khai báo bên trong hàm
    - Return address : Trả về địa chỉ được cấp phát động, trả về địa chỉ của hàm truyền vào là địa chỉ
    - Return reference : Use khi đối số được truyền là tham chiếu, các cấu trúc phức tạp như struct, class
 
-- [9.Inline function](#) : 
+## 9.Inline function : 
    - Đề nghị trình biên dịch thực hiện khai triển nội tuyến với hàm đó
    - Tăng tốc độ xử lý cho hàm
    - Example
@@ -317,11 +317,11 @@
          return 0;
       }
       ```
-- [10. Functions overloading](#) :
+## 10. Functions overloading :
    - Override : ghi đè phương thức của lớp cha thì tên và tham số truyền vào như nhau
    - Overload : trùng tên nhưng khác nhau về tham số, đối số truyền vào.
 
-- [11. Default arguments](#) : 
+## 11. Default arguments : 
    - Khi dùng nhiều hoặc 1 đối số mặc định thì đối số mặc định phải đứng cuối.   
    - Example 
       ```cpp
@@ -333,7 +333,7 @@
          printf("%d \n", sum(1, 3, 4));
       }
       ```
-- [12. Functions pointer](#) :
+## 12. Functions pointer :
    - Define: Con trỏ lưu trữ địa chỉ của hàm 
    - Syntax : 
       ```cpp
