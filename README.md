@@ -1,5 +1,5 @@
 # Study C/C++
-## In this, I use syntax of C to code
+## In this, I use syntax of C to code and C not use Passing Arguments by Reference
 ## 1. Data type and operator 
 - int (%d), float(%f), double(%lf), char(%c), long long(%lld)
 - & : toán tử địa chỉ (address operator)
